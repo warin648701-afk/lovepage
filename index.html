@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>เธเธญเธเธฃเธฑเธ...เธเธฒเธเธซเธฑเธงเนเธ</title>
+<title>บอกรัก...จากหัวใจ</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap');
 
@@ -18,7 +18,6 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Floating Hearts Canvas */
 #heartsCanvas {
     position: fixed;
     top: 0;
@@ -29,7 +28,6 @@ body {
     z-index: 1;
 }
 
-/* Music Toggle */
 .music-btn {
     position: fixed;
     top: 20px;
@@ -52,7 +50,6 @@ body {
 .music-btn:hover { transform: scale(1.1); background: rgba(255,107,157,0.2); }
 .music-btn.playing { border-color: #ff6b9d; box-shadow: 0 0 20px rgba(255,107,157,0.4); }
 
-/* Section Common */
 .section {
     position: relative;
     z-index: 2;
@@ -64,7 +61,6 @@ body {
     padding: 60px 20px;
 }
 
-/* Hero Section */
 .hero {
     text-align: center;
     position: relative;
@@ -124,7 +120,6 @@ body {
 }
 .btn-love:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(255,59,111,0.5); }
 
-/* Countdown */
 .countdown-section {
     text-align: center;
 }
@@ -170,7 +165,6 @@ body {
     margin-top: 10px;
 }
 
-/* Love Message */
 .message-section {
     text-align: center;
     max-width: 700px;
@@ -207,7 +201,6 @@ body {
     51%, 100% { opacity: 0; }
 }
 
-/* Gallery */
 .gallery {
     width: 100%;
     max-width: 1000px;
@@ -277,7 +270,6 @@ body {
 
 .gallery-item:hover .overlay { opacity: 1; }
 
-/* Footer */
 .footer {
     text-align: center;
     padding: 40px;
@@ -289,7 +281,6 @@ body {
 
 .footer span { color: #ff6b9d; }
 
-/* Lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -329,7 +320,6 @@ body {
 }
 .lightbox-close:hover { background: rgba(255,107,157,0.3); transform: rotate(90deg); }
 
-/* Scroll indicator */
 .scroll-indicator {
     position: absolute;
     bottom: 40px;
@@ -354,7 +344,6 @@ body {
     transform: rotate(45deg);
 }
 
-/* Fireworks Canvas */
 #fireworksCanvas {
     position: fixed;
     top: 0;
@@ -365,7 +354,6 @@ body {
     z-index: 3;
 }
 
-/* Animations */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
@@ -387,7 +375,6 @@ body {
     transform: translateY(0);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .countdown-item { min-width: 80px; padding: 20px; }
     .countdown-number { font-size: 2rem; }
@@ -398,81 +385,74 @@ body {
 </head>
 <body>
 
-<button class="music-btn" id="musicBtn" onclick="toggleMusic()">โซ</button>
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">♫</button>
 <audio id="bgMusic" loop src="bgmusic.mp3"></audio>
 
 <canvas id="heartsCanvas"></canvas>
 <canvas id="fireworksCanvas"></canvas>
 
-<!-- HERO -->
 <section class="section hero" id="hero">
-    <div class="hero-subtitle">เน€เธเธดเธ”เธซเธฑเธงเนเธ</div>
-    <h1 class="hero-title">เธเธฒเธเนเธ<br>เธ–เธถเธเน€เธเธญ</h1>
-    <p class="hero-desc">เธ—เธธเธเธ•เธฑเธงเธญเธฑเธเธฉเธฃเธ—เธตเนเน€เธเธตเธขเธเธเธตเน เธเธทเธญเธเธงเธฒเธกเธฃเธนเนเธชเธถเธเธ—เธตเนเน€เธเนเธเนเธงเน<br>เธ–เธถเธเธเธเธ—เธตเนเธ—เธณเนเธซเนเนเธฅเธเธเธตเนเธกเธตเธเธงเธฒเธกเธซเธกเธฒเธข</p>
-    <a href="#message" class="btn-love" onclick="fireworkBurst()">เน€เธเธดเธ”เธเนเธญเธเธงเธฒเธก โค</a>
+    <div class="hero-subtitle">เปิดหัวใจ</div>
+    <h1 class="hero-title">จากใจ<br>ถึงเธอ</h1>
+    <p class="hero-desc">ทุกตัวอักษรที่เขียนนี้ คือความรู้สึกที่เก็บไว้<br>ถึงคนที่ทำให้โลกนี้มีความหมาย</p>
+    <a href="#message" class="btn-love" onclick="fireworkBurst()">เปิดข้อความ ❤</a>
     <div class="scroll-indicator">
-        <span>เน€เธฅเธทเนเธญเธเธฅเธ</span>
+        <span>เลื่อนลง</span>
         <div class="arrow"></div>
     </div>
 </section>
 
-<!-- COUNTDOWN -->
 <section class="section countdown-section" id="countdown">
-    <h2 class="countdown-title reveal">เธเธฑเธเธ–เธญเธขเธซเธฅเธฑเธ...เธ–เธถเธเธงเธฑเธเธเธดเน€เธจเธฉ</h2>
+    <h2 class="countdown-title reveal">นับถอยหลัง...ถึงวันพิเศษ</h2>
     <div class="countdown-grid">
-        <div class="countdown-item reveal"><div class="countdown-number" id="days">00</div><div class="countdown-label">เธงเธฑเธ</div></div>
-        <div class="countdown-item reveal"><div class="countdown-number" id="hours">00</div><div class="countdown-label">เธเธฑเนเธงเนเธกเธ</div></div>
-        <div class="countdown-item reveal"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">เธเธฒเธ—เธต</div></div>
-        <div class="countdown-item reveal"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">เธงเธดเธเธฒเธ—เธต</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="days">00</div><div class="countdown-label">วัน</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="hours">00</div><div class="countdown-label">ชั่วโมง</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">นาที</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">วินาที</div></div>
     </div>
 </section>
 
-<!-- LOVE MESSAGE -->
 <section class="section" id="message">
     <div class="message-section">
-        <div class="message-label reveal">โง เธเนเธญเธเธงเธฒเธกเธเธฒเธเธซเธฑเธงเนเธ โง</div>
+        <div class="message-label reveal">✧ ข้อความจากหัวใจ ✧</div>
         <div class="message-text reveal">
             <span id="typewriter"></span><span class="cursor"></span>
         </div>
     </div>
 </section>
 
-<!-- GALLERY -->
 <section class="section gallery" id="gallery">
-    <h2 class="gallery-title reveal">โฟ เธเธงเธฒเธกเธ—เธฃเธเธเธณเธเธญเธเน€เธฃเธฒ โฟ</h2>
+    <h2 class="gallery-title reveal">✿ ความทรงจำของเรา ✿</h2>
     <div class="gallery-grid" id="galleryGrid">
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">๐“ธ</div><span>เน€เธเธดเนเธกเธฃเธนเธเธเธญเธเธเธธเธ“</span></div>
-            <div class="overlay">เธเนเธงเธเน€เธงเธฅเธฒเธ—เธตเนเธชเธงเธขเธเธฒเธก</div>
+            <div class="gallery-placeholder"><div class="icon">📸</div><span>เพิ่มรูปของคุณ</span></div>
+            <div class="overlay">ช่วงเวลาที่สวยงาม</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">๐น</div><span>เน€เธเธดเนเธกเธฃเธนเธเธเธญเธเธเธธเธ“</span></div>
-            <div class="overlay">เธฃเธญเธขเธขเธดเนเธกเธ—เธตเนเธเธฑเธเธเธญเธ</div>
+            <div class="gallery-placeholder"><div class="icon">🌹</div><span>เพิ่มรูปของคุณ</span></div>
+            <div class="overlay">รอยยิ้มที่ฉันชอบ</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">๐’ซ</div><span>เน€เธเธดเนเธกเธฃเธนเธเธเธญเธเธเธธเธ“</span></div>
-            <div class="overlay">เธ—เธธเธเธเธฒเธ—เธตเธกเธตเธเนเธฒ</div>
+            <div class="gallery-placeholder"><div class="icon">💫</div><span>เพิ่มรูปของคุณ</span></div>
+            <div class="overlay">ทุกนาทีมีค่า</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">๐’•</div><span>เน€เธเธดเนเธกเธฃเธนเธเธเธญเธเธเธธเธ“</span></div>
-            <div class="overlay">เน€เธเธญเธเธทเธญเนเธฅเธเธเธญเธเธเธฑเธ</div>
+            <div class="gallery-placeholder"><div class="icon">💕</div><span>เพิ่มรูปของคุณ</span></div>
+            <div class="overlay">เธอคือโลกของฉัน</div>
         </div>
     </div>
 </section>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">โ•</button>
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
     <img id="lightboxImg" src="" alt="">
 </div>
 
-<!-- FOOTER -->
 <div class="footer" style="z-index:2;position:relative">
-    made with <span>โฅ</span> from my heart to yours
+    made with <span>♥</span> from my heart to yours
 </div>
 
 <script>
-// === HEARTS ANIMATION ===
 const hCanvas = document.getElementById('heartsCanvas');
 const hCtx = hCanvas.getContext('2d');
 let hearts = [];
@@ -485,9 +465,7 @@ resizeHearts();
 window.addEventListener('resize', resizeHearts);
 
 class Heart {
-    constructor() {
-        this.reset();
-    }
+    constructor() { this.reset(); }
     reset() {
         this.x = Math.random() * hCanvas.width;
         this.y = hCanvas.height + 50;
@@ -533,7 +511,6 @@ function animateHearts() {
 }
 animateHearts();
 
-// === FIREWORKS ===
 const fCanvas = document.getElementById('fireworksCanvas');
 const fCtx = fCanvas.getContext('2d');
 let particles = [];
@@ -550,15 +527,7 @@ function createFirework(x, y) {
     for (let i = 0; i < 80; i++) {
         const angle = Math.random() * Math.PI * 2;
         const speed = Math.random() * 6 + 2;
-        particles.push({
-            x, y,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
-            size: Math.random() * 4 + 2,
-            color: colors[Math.floor(Math.random() * colors.length)],
-            life: 1,
-            decay: Math.random() * 0.02 + 0.015
-        });
+        particles.push({ x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, size: Math.random() * 4 + 2, color: colors[Math.floor(Math.random() * colors.length)], life: 1, decay: Math.random() * 0.02 + 0.015 });
     }
 }
 
@@ -566,10 +535,7 @@ function animateFireworks() {
     fCtx.clearRect(0, 0, fCanvas.width, fCanvas.height);
     particles = particles.filter(p => p.life > 0);
     particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.05;
-        p.life -= p.decay;
+        p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.life -= p.decay;
         fCtx.globalAlpha = p.life;
         fCtx.fillStyle = p.color;
         fCtx.shadowColor = p.color;
@@ -585,27 +551,17 @@ animateFireworks();
 
 function fireworkBurst() {
     for (let i = 0; i < 5; i++) {
-        setTimeout(() => {
-            createFirework(
-                Math.random() * fCanvas.width,
-                Math.random() * fCanvas.height * 0.6
-            );
-        }, i * 200);
+        setTimeout(() => { createFirework(Math.random() * fCanvas.width, Math.random() * fCanvas.height * 0.6); }, i * 200);
     }
 }
 
-// Auto fireworks on load
 setTimeout(fireworkBurst, 2000);
-setInterval(() => {
-    if (Math.random() > 0.5) fireworkBurst();
-}, 4000);
+setInterval(() => { if (Math.random() > 0.5) fireworkBurst(); }, 4000);
 
-// === COUNTDOWN ===
 function setCountdown() {
     const target = new Date();
     target.setDate(target.getDate() + 30);
     target.setHours(20, 0, 0, 0);
-
     function update() {
         const now = new Date();
         const diff = target - now;
@@ -620,59 +576,42 @@ function setCountdown() {
 }
 setCountdown();
 
-// === TYPEWRITER ===
 const loveMessages = [
-    "เธ—เธธเธเธเธฃเธฑเนเธเธ—เธตเนเน€เธซเนเธเน€เธเธญ เธซเธฑเธงเนเธเธเธฑเธเน€เธ•เนเธเนเธฃเธ...",
-    "เน€เธเธญเธเธทเธญเน€เธซเธ•เธธเธเธฅเธ—เธตเนเธ—เธณเนเธซเนเธเธฑเธเน€เธเธทเนเธญเนเธเธเธงเธฒเธกเธฃเธฑเธ",
-    "เนเธกเนเธงเนเธฒเน€เธงเธฅเธฒเธเธฐเธเนเธฒเธเนเธเธเธฒเธเนเธเนเนเธซเธ เธเธงเธฒเธกเธฃเธนเนเธชเธถเธเธเธตเนเธเธฐเนเธกเนเน€เธเธฅเธตเนเธขเธ",
-    "เธญเธขเธฒเธเธเธญเธเน€เธเธญเธ—เธธเธเธงเธฑเธเธงเนเธฒ... เธเธฑเธเธฃเธฑเธเน€เธเธญเธเธฐ",
-    "เธ•เนเธญเนเธซเนเธ—เธฑเนเธเนเธฅเธเนเธกเนเน€เธเนเธฒเนเธ เนเธ•เนเธเธฑเธเธเธฐเน€เธเนเธฒเนเธเน€เธเธญเน€เธชเธกเธญ",
-    "เน€เธเธญเธเธทเธญเธเธณเธ•เธญเธเธเธญเธเธ—เธธเธเธเธณเธ–เธฒเธกเนเธเธเธตเธงเธดเธ•เธเธฑเธ",
-    "เธฃเธฑเธเน€เธเธญ... เธกเธฒเธเธเธงเนเธฒเธ—เธตเนเธเธณเธงเนเธฒเธฃเธฑเธเธเธฐเธเธฃเธฃเธขเธฒเธข"
+    "ทุกครั้งที่เห็นเธอ หัวใจฉันเต้นแรง...",
+    "เธอคือเหตุผลที่ทำให้ฉันเชื่อในความรัก",
+    "ไม่ว่าเวลาจะผ่านไปนานแค่ไหน ความรู้สึกนี้จะไม่เปลี่ยน",
+    "อยากบอกเธอทุกวันว่า... ฉันรักเธอนะ",
+    "ต่อให้ทั้งโลกไม่เข้าใจ แต่ฉันจะเข้าใจเธอเสมอ",
+    "เธอคือคำตอบของทุกคำถามในชีวิตฉัน",
+    "รักเธอ... มากกว่าที่คำว่ารักจะบรรยาย"
 ];
 
 function startTypewriter() {
     const el = document.getElementById('typewriter');
-    let msgIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
+    let msgIndex = 0, charIndex = 0, isDeleting = false;
     function type() {
         const currentMsg = loveMessages[msgIndex];
         if (!isDeleting) {
             el.textContent = currentMsg.substring(0, charIndex + 1);
             charIndex++;
-            if (charIndex === currentMsg.length) {
-                isDeleting = true;
-                setTimeout(type, 3000);
-                return;
-            }
+            if (charIndex === currentMsg.length) { isDeleting = true; setTimeout(type, 3000); return; }
             setTimeout(type, 60);
         } else {
             el.textContent = currentMsg.substring(0, charIndex - 1);
             charIndex--;
-            if (charIndex === 0) {
-                isDeleting = false;
-                msgIndex = (msgIndex + 1) % loveMessages.length;
-                setTimeout(type, 500);
-                return;
-            }
+            if (charIndex === 0) { isDeleting = false; msgIndex = (msgIndex + 1) % loveMessages.length; setTimeout(type, 500); return; }
             setTimeout(type, 30);
         }
     }
     setTimeout(type, 500);
 }
 
-// === SCROLL REVEAL ===
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
-    });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// === MUSIC ===
 let isPlaying = false;
 const audio = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
@@ -691,13 +630,8 @@ function toggleMusic() {
     isPlaying = !isPlaying;
 }
 
-document.addEventListener('click', () => {
-    if (!isPlaying && audio.paused) {
-        toggleMusic();
-    }
-}, { once: true });
+document.addEventListener('click', () => { if (!isPlaying && audio.paused) { toggleMusic(); } }, { once: true });
 
-// === GALLERY CLICK ===
 document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', function() {
         const img = this.querySelector('img');
@@ -712,22 +646,12 @@ function closeLightbox() {
     document.getElementById('lightbox').classList.remove('active');
 }
 
-// === KEYBOARD ===
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-// Init typewriter when visible
 const msgObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            startTypewriter();
-            msgObserver.disconnect();
-        }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { startTypewriter(); msgObserver.disconnect(); } });
 }, { threshold: 0.3 });
 msgObserver.observe(document.getElementById('message'));
 </script>
 </body>
 </html>
-
