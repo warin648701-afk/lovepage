@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>บอกรัก...จากหัวใจ</title>
+<title>เธเธญเธเธฃเธฑเธ...เธเธฒเธเธซเธฑเธงเนเธ</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap');
 
@@ -398,40 +398,39 @@ body {
 </head>
 <body>
 
-<button class="music-btn" id="musicBtn" onclick="toggleMusic()">♫</button>
-<div id="ytPlayer" style="display:none"></div>
-<script src="https://www.youtube.com/iframe_api"></script>
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">โซ</button>
+<audio id="bgMusic" loop src="bgmusic.mp3"></audio>
 
 <canvas id="heartsCanvas"></canvas>
 <canvas id="fireworksCanvas"></canvas>
 
 <!-- HERO -->
 <section class="section hero" id="hero">
-    <div class="hero-subtitle">เปิดหัวใจ</div>
-    <h1 class="hero-title">จากใจ<br>ถึงเธอ</h1>
-    <p class="hero-desc">ทุกตัวอักษรที่เขียนนี้ คือความรู้สึกที่เก็บไว้<br>ถึงคนที่ทำให้โลกนี้มีความหมาย</p>
-    <a href="#message" class="btn-love" onclick="fireworkBurst()">เปิดข้อความ ❤</a>
+    <div class="hero-subtitle">เน€เธเธดเธ”เธซเธฑเธงเนเธ</div>
+    <h1 class="hero-title">เธเธฒเธเนเธ<br>เธ–เธถเธเน€เธเธญ</h1>
+    <p class="hero-desc">เธ—เธธเธเธ•เธฑเธงเธญเธฑเธเธฉเธฃเธ—เธตเนเน€เธเธตเธขเธเธเธตเน เธเธทเธญเธเธงเธฒเธกเธฃเธนเนเธชเธถเธเธ—เธตเนเน€เธเนเธเนเธงเน<br>เธ–เธถเธเธเธเธ—เธตเนเธ—เธณเนเธซเนเนเธฅเธเธเธตเนเธกเธตเธเธงเธฒเธกเธซเธกเธฒเธข</p>
+    <a href="#message" class="btn-love" onclick="fireworkBurst()">เน€เธเธดเธ”เธเนเธญเธเธงเธฒเธก โค</a>
     <div class="scroll-indicator">
-        <span>เลื่อนลง</span>
+        <span>เน€เธฅเธทเนเธญเธเธฅเธ</span>
         <div class="arrow"></div>
     </div>
 </section>
 
 <!-- COUNTDOWN -->
 <section class="section countdown-section" id="countdown">
-    <h2 class="countdown-title reveal">นับถอยหลัง...ถึงวันพิเศษ</h2>
+    <h2 class="countdown-title reveal">เธเธฑเธเธ–เธญเธขเธซเธฅเธฑเธ...เธ–เธถเธเธงเธฑเธเธเธดเน€เธจเธฉ</h2>
     <div class="countdown-grid">
-        <div class="countdown-item reveal"><div class="countdown-number" id="days">00</div><div class="countdown-label">วัน</div></div>
-        <div class="countdown-item reveal"><div class="countdown-number" id="hours">00</div><div class="countdown-label">ชั่วโมง</div></div>
-        <div class="countdown-item reveal"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">นาที</div></div>
-        <div class="countdown-item reveal"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">วินาที</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="days">00</div><div class="countdown-label">เธงเธฑเธ</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="hours">00</div><div class="countdown-label">เธเธฑเนเธงเนเธกเธ</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">เธเธฒเธ—เธต</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">เธงเธดเธเธฒเธ—เธต</div></div>
     </div>
 </section>
 
 <!-- LOVE MESSAGE -->
 <section class="section" id="message">
     <div class="message-section">
-        <div class="message-label reveal">✧ ข้อความจากหัวใจ ✧</div>
+        <div class="message-label reveal">โง เธเนเธญเธเธงเธฒเธกเธเธฒเธเธซเธฑเธงเนเธ โง</div>
         <div class="message-text reveal">
             <span id="typewriter"></span><span class="cursor"></span>
         </div>
@@ -440,36 +439,36 @@ body {
 
 <!-- GALLERY -->
 <section class="section gallery" id="gallery">
-    <h2 class="gallery-title reveal">✿ ความทรงจำของเรา ✿</h2>
+    <h2 class="gallery-title reveal">โฟ เธเธงเธฒเธกเธ—เธฃเธเธเธณเธเธญเธเน€เธฃเธฒ โฟ</h2>
     <div class="gallery-grid" id="galleryGrid">
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">📸</div><span>เพิ่มรูปของคุณ</span></div>
-            <div class="overlay">ช่วงเวลาที่สวยงาม</div>
+            <div class="gallery-placeholder"><div class="icon">๐“ธ</div><span>เน€เธเธดเนเธกเธฃเธนเธเธเธญเธเธเธธเธ“</span></div>
+            <div class="overlay">เธเนเธงเธเน€เธงเธฅเธฒเธ—เธตเนเธชเธงเธขเธเธฒเธก</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">🌹</div><span>เพิ่มรูปของคุณ</span></div>
-            <div class="overlay">รอยยิ้มที่ฉันชอบ</div>
+            <div class="gallery-placeholder"><div class="icon">๐น</div><span>เน€เธเธดเนเธกเธฃเธนเธเธเธญเธเธเธธเธ“</span></div>
+            <div class="overlay">เธฃเธญเธขเธขเธดเนเธกเธ—เธตเนเธเธฑเธเธเธญเธ</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">💫</div><span>เพิ่มรูปของคุณ</span></div>
-            <div class="overlay">ทุกนาทีมีค่า</div>
+            <div class="gallery-placeholder"><div class="icon">๐’ซ</div><span>เน€เธเธดเนเธกเธฃเธนเธเธเธญเธเธเธธเธ“</span></div>
+            <div class="overlay">เธ—เธธเธเธเธฒเธ—เธตเธกเธตเธเนเธฒ</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">💕</div><span>เพิ่มรูปของคุณ</span></div>
-            <div class="overlay">เธอคือโลกของฉัน</div>
+            <div class="gallery-placeholder"><div class="icon">๐’•</div><span>เน€เธเธดเนเธกเธฃเธนเธเธเธญเธเธเธธเธ“</span></div>
+            <div class="overlay">เน€เธเธญเธเธทเธญเนเธฅเธเธเธญเธเธเธฑเธ</div>
         </div>
     </div>
 </section>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-close" onclick="closeLightbox()">โ•</button>
     <img id="lightboxImg" src="" alt="">
 </div>
 
 <!-- FOOTER -->
 <div class="footer" style="z-index:2;position:relative">
-    made with <span>♥</span> from my heart to yours
+    made with <span>โฅ</span> from my heart to yours
 </div>
 
 <script>
@@ -623,13 +622,13 @@ setCountdown();
 
 // === TYPEWRITER ===
 const loveMessages = [
-    "ทุกครั้งที่เห็นเธอ หัวใจฉันเต้นแรง...",
-    "เธอคือเหตุผลที่ทำให้ฉันเชื่อในความรัก",
-    "ไม่ว่าเวลาจะผ่านไปนานแค่ไหน ความรู้สึกนี้จะไม่เปลี่ยน",
-    "อยากบอกเธอทุกวันว่า... ฉันรักเธอนะ",
-    "ต่อให้ทั้งโลกไม่เข้าใจ แต่ฉันจะเข้าใจเธอเสมอ",
-    "เธอคือคำตอบของทุกคำถามในชีวิตฉัน",
-    "รักเธอ... มากกว่าที่คำว่ารักจะบรรยาย"
+    "เธ—เธธเธเธเธฃเธฑเนเธเธ—เธตเนเน€เธซเนเธเน€เธเธญ เธซเธฑเธงเนเธเธเธฑเธเน€เธ•เนเธเนเธฃเธ...",
+    "เน€เธเธญเธเธทเธญเน€เธซเธ•เธธเธเธฅเธ—เธตเนเธ—เธณเนเธซเนเธเธฑเธเน€เธเธทเนเธญเนเธเธเธงเธฒเธกเธฃเธฑเธ",
+    "เนเธกเนเธงเนเธฒเน€เธงเธฅเธฒเธเธฐเธเนเธฒเธเนเธเธเธฒเธเนเธเนเนเธซเธ เธเธงเธฒเธกเธฃเธนเนเธชเธถเธเธเธตเนเธเธฐเนเธกเนเน€เธเธฅเธตเนเธขเธ",
+    "เธญเธขเธฒเธเธเธญเธเน€เธเธญเธ—เธธเธเธงเธฑเธเธงเนเธฒ... เธเธฑเธเธฃเธฑเธเน€เธเธญเธเธฐ",
+    "เธ•เนเธญเนเธซเนเธ—เธฑเนเธเนเธฅเธเนเธกเนเน€เธเนเธฒเนเธ เนเธ•เนเธเธฑเธเธเธฐเน€เธเนเธฒเนเธเน€เธเธญเน€เธชเธกเธญ",
+    "เน€เธเธญเธเธทเธญเธเธณเธ•เธญเธเธเธญเธเธ—เธธเธเธเธณเธ–เธฒเธกเนเธเธเธตเธงเธดเธ•เธเธฑเธ",
+    "เธฃเธฑเธเน€เธเธญ... เธกเธฒเธเธเธงเนเธฒเธ—เธตเนเธเธณเธงเนเธฒเธฃเธฑเธเธเธฐเธเธฃเธฃเธขเธฒเธข"
 ];
 
 function startTypewriter() {
@@ -705,11 +704,11 @@ function toggleMusic() {
     if (isPlaying) {
         player.pauseVideo();
         musicBtn.classList.remove('playing');
-        musicBtn.textContent = '♫';
+        musicBtn.textContent = 'โซ';
     } else {
         player.playVideo();
         musicBtn.classList.add('playing');
-        musicBtn.textContent = '♪';
+        musicBtn.textContent = 'โช';
         fireworkBurst();
     }
     isPlaying = !isPlaying;
@@ -754,3 +753,4 @@ msgObserver.observe(document.getElementById('message'));
 </script>
 </body>
 </html>
+
