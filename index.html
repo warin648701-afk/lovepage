@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บอกรัก...จากหัวใจ</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Kanit', sans-serif;
+    background: linear-gradient(135deg, #0a0015 0%, #1a0025 30%, #2d0020 60%, #1a0010 100%);
+    min-height: 100vh;
+    color: #fff;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Floating Hearts Canvas */
+#heartsCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Music Toggle */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 107, 157, 0.6);
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    color: #ff6b9d;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.music-btn:hover { transform: scale(1.1); background: rgba(255,107,157,0.2); }
+.music-btn.playing { border-color: #ff6b9d; box-shadow: 0 0 20px rgba(255,107,157,0.4); }
+
+/* Section Common */
+.section {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    position: relative;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ff6b9d, #ff3b6f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 300;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.5s;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 8rem);
+    background: linear-gradient(135deg, #fff 0%, #ffd1e8 30%, #ff6b9d 60%, #ff3b6f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.8s;
+}
+
+.hero-desc {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.1s;
+}
+
+.btn-love {
+    display: inline-block;
+    padding: 16px 48px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff6b9d, #ff3b6f);
+    color: #fff;
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 10px 40px rgba(255,59,111,0.3);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1.4s;
+}
+.btn-love:hover { transform: translateY(-3px); box-shadow: 0 15px 50px rgba(255,59,111,0.5); }
+
+/* Countdown */
+.countdown-section {
+    text-align: center;
+}
+
+.countdown-title {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    color: rgba(255,255,255,0.8);
+}
+
+.countdown-grid {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,107,157,0.2);
+    border-radius: 20px;
+    padding: 30px 35px;
+    min-width: 120px;
+    backdrop-filter: blur(10px);
+}
+
+.countdown-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffd1e8, #ff6b9d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.countdown-label {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 10px;
+}
+
+/* Love Message */
+.message-section {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.message-label {
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    color: #ff6b9d;
+    margin-bottom: 30px;
+}
+
+.message-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.8;
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    min-height: 100px;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background: #ff6b9d;
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Gallery */
+.gallery {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.gallery-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,107,157,0.15);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 40px rgba(255,107,157,0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.9rem;
+    gap: 10px;
+}
+
+.gallery-placeholder .icon { font-size: 3rem; }
+
+.gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: #fff;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.gallery-item:hover .overlay { opacity: 1; }
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.85rem;
+    z-index: 2;
+    position: relative;
+}
+
+.footer span { color: #ff6b9d; }
+
+/* Lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox.active { display: flex; }
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.lightbox-close:hover { background: rgba(255,107,157,0.3); transform: rotate(90deg); }
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator .arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid rgba(255,255,255,0.4);
+    border-bottom: 2px solid rgba(255,255,255,0.4);
+    transform: rotate(45deg);
+}
+
+/* Fireworks Canvas */
+#fireworksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .countdown-item { min-width: 80px; padding: 20px; }
+    .countdown-number { font-size: 2rem; }
+    .countdown-grid { gap: 15px; }
+    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">♫</button>
+<audio id="bgMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+<canvas id="heartsCanvas"></canvas>
+<canvas id="fireworksCanvas"></canvas>
+
+<!-- HERO -->
+<section class="section hero" id="hero">
+    <div class="hero-subtitle">เปิดหัวใจ</div>
+    <h1 class="hero-title">จากใจ<br>ถึงเธอ</h1>
+    <p class="hero-desc">ทุกตัวอักษรที่เขียนนี้ คือความรู้สึกที่เก็บไว้<br>ถึงคนที่ทำให้โลกนี้มีความหมาย</p>
+    <a href="#message" class="btn-love" onclick="fireworkBurst()">เปิดข้อความ ❤</a>
+    <div class="scroll-indicator">
+        <span>เลื่อนลง</span>
+        <div class="arrow"></div>
+    </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section countdown-section" id="countdown">
+    <h2 class="countdown-title reveal">นับถอยหลัง...ถึงวันพิเศษ</h2>
+    <div class="countdown-grid">
+        <div class="countdown-item reveal"><div class="countdown-number" id="days">00</div><div class="countdown-label">วัน</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="hours">00</div><div class="countdown-label">ชั่วโมง</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">นาที</div></div>
+        <div class="countdown-item reveal"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">วินาที</div></div>
+    </div>
+</section>
+
+<!-- LOVE MESSAGE -->
+<section class="section" id="message">
+    <div class="message-section">
+        <div class="message-label reveal">✧ ข้อความจากหัวใจ ✧</div>
+        <div class="message-text reveal">
+            <span id="typewriter"></span><span class="cursor"></span>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery" id="gallery">
+    <h2 class="gallery-title reveal">✿ ความทรงจำของเรา ✿</h2>
+    <div class="gallery-grid" id="galleryGrid">
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder"><div class="icon">📸</div><span>เพิ่มรูปของคุณ</span></div>
+            <div class="overlay">ช่วงเวลาที่สวยงาม</div>
+        </div>
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder"><div class="icon">🌹</div><span>เพิ่มรูปของคุณ</span></div>
+            <div class="overlay">รอยยิ้มที่ฉันชอบ</div>
+        </div>
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder"><div class="icon">💫</div><span>เพิ่มรูปของคุณ</span></div>
+            <div class="overlay">ทุกนาทีมีค่า</div>
+        </div>
+        <div class="gallery-item reveal">
+            <div class="gallery-placeholder"><div class="icon">💕</div><span>เพิ่มรูปของคุณ</span></div>
+            <div class="overlay">เธอคือโลกของฉัน</div>
+        </div>
+    </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- FOOTER -->
+<div class="footer" style="z-index:2;position:relative">
+    made with <span>♥</span> from my heart to yours
+</div>
+
+<script>
+// === HEARTS ANIMATION ===
+const hCanvas = document.getElementById('heartsCanvas');
+const hCtx = hCanvas.getContext('2d');
+let hearts = [];
+
+function resizeHearts() {
+    hCanvas.width = window.innerWidth;
+    hCanvas.height = window.innerHeight;
+}
+resizeHearts();
+window.addEventListener('resize', resizeHearts);
+
+class Heart {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * hCanvas.width;
+        this.y = hCanvas.height + 50;
+        this.size = Math.random() * 20 + 10;
+        this.speed = Math.random() * 2 + 1;
+        this.wobble = Math.random() * 2;
+        this.wobbleSpeed = Math.random() * 0.02 + 0.01;
+        this.phase = Math.random() * Math.PI * 2;
+        this.opacity = Math.random() * 0.5 + 0.3;
+        this.color = ['#ff6b9d', '#ff3b6f', '#ffd1e8', '#ff8fab', '#ff2e63'][Math.floor(Math.random() * 5)];
+    }
+    update() {
+        this.y -= this.speed;
+        this.x += Math.sin(this.phase) * this.wobble;
+        this.phase += this.wobbleSpeed;
+        if (this.y < -50) this.reset();
+    }
+    draw() {
+        hCtx.save();
+        hCtx.globalAlpha = this.opacity;
+        hCtx.translate(this.x, this.y);
+        hCtx.scale(this.size / 20, this.size / 20);
+        hCtx.fillStyle = this.color;
+        hCtx.beginPath();
+        hCtx.moveTo(0, -8);
+        hCtx.bezierCurveTo(-12, -18, -20, -4, 0, 8);
+        hCtx.bezierCurveTo(20, -4, 12, -18, 0, -8);
+        hCtx.fill();
+        hCtx.restore();
+    }
+}
+
+for (let i = 0; i < 60; i++) {
+    const h = new Heart();
+    h.y = Math.random() * hCanvas.height;
+    hearts.push(h);
+}
+
+function animateHearts() {
+    hCtx.clearRect(0, 0, hCanvas.width, hCanvas.height);
+    hearts.forEach(h => { h.update(); h.draw(); });
+    requestAnimationFrame(animateHearts);
+}
+animateHearts();
+
+// === FIREWORKS ===
+const fCanvas = document.getElementById('fireworksCanvas');
+const fCtx = fCanvas.getContext('2d');
+let particles = [];
+
+function resizeFireworks() {
+    fCanvas.width = window.innerWidth;
+    fCanvas.height = window.innerHeight;
+}
+resizeFireworks();
+window.addEventListener('resize', resizeFireworks);
+
+function createFirework(x, y) {
+    const colors = ['#ff6b9d', '#ffd1e8', '#ff3b6f', '#ff8fab', '#fff', '#ffd700', '#ff1493'];
+    for (let i = 0; i < 80; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 6 + 2;
+        particles.push({
+            x, y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            size: Math.random() * 4 + 2,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            life: 1,
+            decay: Math.random() * 0.02 + 0.015
+        });
+    }
+}
+
+function animateFireworks() {
+    fCtx.clearRect(0, 0, fCanvas.width, fCanvas.height);
+    particles = particles.filter(p => p.life > 0);
+    particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.05;
+        p.life -= p.decay;
+        fCtx.globalAlpha = p.life;
+        fCtx.fillStyle = p.color;
+        fCtx.shadowColor = p.color;
+        fCtx.shadowBlur = 10;
+        fCtx.beginPath();
+        fCtx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+        fCtx.fill();
+    });
+    fCtx.shadowBlur = 0;
+    requestAnimationFrame(animateFireworks);
+}
+animateFireworks();
+
+function fireworkBurst() {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            createFirework(
+                Math.random() * fCanvas.width,
+                Math.random() * fCanvas.height * 0.6
+            );
+        }, i * 200);
+    }
+}
+
+// Auto fireworks on load
+setTimeout(fireworkBurst, 2000);
+setInterval(() => {
+    if (Math.random() > 0.5) fireworkBurst();
+}, 4000);
+
+// === COUNTDOWN ===
+function setCountdown() {
+    const target = new Date();
+    target.setDate(target.getDate() + 30);
+    target.setHours(20, 0, 0, 0);
+
+    function update() {
+        const now = new Date();
+        const diff = target - now;
+        if (diff <= 0) return;
+        document.getElementById('days').textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
+        document.getElementById('hours').textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+    }
+    update();
+    setInterval(update, 1000);
+}
+setCountdown();
+
+// === TYPEWRITER ===
+const loveMessages = [
+    "ทุกครั้งที่เห็นเธอ หัวใจฉันเต้นแรง...",
+    "เธอคือเหตุผลที่ทำให้ฉันเชื่อในความรัก",
+    "ไม่ว่าเวลาจะผ่านไปนานแค่ไหน ความรู้สึกนี้จะไม่เปลี่ยน",
+    "อยากบอกเธอทุกวันว่า... ฉันรักเธอนะ",
+    "ต่อให้ทั้งโลกไม่เข้าใจ แต่ฉันจะเข้าใจเธอเสมอ",
+    "เธอคือคำตอบของทุกคำถามในชีวิตฉัน",
+    "รักเธอ... มากกว่าที่คำว่ารักจะบรรยาย"
+];
+
+function startTypewriter() {
+    const el = document.getElementById('typewriter');
+    let msgIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const currentMsg = loveMessages[msgIndex];
+        if (!isDeleting) {
+            el.textContent = currentMsg.substring(0, charIndex + 1);
+            charIndex++;
+            if (charIndex === currentMsg.length) {
+                isDeleting = true;
+                setTimeout(type, 3000);
+                return;
+            }
+            setTimeout(type, 60);
+        } else {
+            el.textContent = currentMsg.substring(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+                isDeleting = false;
+                msgIndex = (msgIndex + 1) % loveMessages.length;
+                setTimeout(type, 500);
+                return;
+            }
+            setTimeout(type, 30);
+        }
+    }
+    setTimeout(type, 500);
+}
+
+// === SCROLL REVEAL ===
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+    });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// === MUSIC ===
+let isPlaying = false;
+const audio = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+
+function toggleMusic() {
+    if (isPlaying) {
+        audio.pause();
+        musicBtn.classList.remove('playing');
+        musicBtn.textContent = '♫';
+    } else {
+        audio.play().catch(() => {});
+        musicBtn.classList.add('playing');
+        musicBtn.textContent = '♪';
+        // Fireworks on play
+        fireworkBurst();
+    }
+    isPlaying = !isPlaying;
+}
+
+// Start playing on first interaction
+document.addEventListener('click', () => {
+    if (!isPlaying && audio.paused) {
+        toggleMusic();
+        document.removeEventListener('click', arguments.callee);
+    }
+}, { once: true });
+
+// === GALLERY CLICK ===
+document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const img = this.querySelector('img');
+        if (img && img.src && !img.src.includes('placeholder')) {
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+    });
+});
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+}
+
+// === KEYBOARD ===
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+});
+
+// Init typewriter when visible
+const msgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            startTypewriter();
+            msgObserver.disconnect();
+        }
+    });
+}, { threshold: 0.3 });
+msgObserver.observe(document.getElementById('message'));
+</script>
+</body>
+</html>
