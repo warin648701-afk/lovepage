@@ -425,19 +425,19 @@ body {
     <h2 class="gallery-title reveal">✿ ความทรงจำของเรา ✿</h2>
     <div class="gallery-grid" id="galleryGrid">
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">📸</div><span>เพิ่มรูปของคุณ</span></div>
+            <img src="IMG20260207161337.jpg" alt="photo1" loading="lazy">
             <div class="overlay">ช่วงเวลาที่สวยงาม</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">🌹</div><span>เพิ่มรูปของคุณ</span></div>
+            <img src="IMG20260210161947.jpg" alt="photo2" loading="lazy">
             <div class="overlay">รอยยิ้มที่ฉันชอบ</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">💫</div><span>เพิ่มรูปของคุณ</span></div>
+            <img src="402500.jpg" alt="photo3" loading="lazy">
             <div class="overlay">ทุกนาทีมีค่า</div>
         </div>
         <div class="gallery-item reveal">
-            <div class="gallery-placeholder"><div class="icon">💕</div><span>เพิ่มรูปของคุณ</span></div>
+            <img src="LINE_20251004_005439.jpg" alt="photo4" loading="lazy">
             <div class="overlay">เธอคือโลกของฉัน</div>
         </div>
     </div>
@@ -559,9 +559,14 @@ setTimeout(fireworkBurst, 2000);
 setInterval(() => { if (Math.random() > 0.5) fireworkBurst(); }, 4000);
 
 function setCountdown() {
-    const target = new Date();
-    target.setDate(target.getDate() + 30);
-    target.setHours(20, 0, 0, 0);
+    const now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth();
+    if (now.getDate() >= 6) {
+        month++;
+        if (month > 11) { month = 0; year++; }
+    }
+    const target = new Date(year, month, 6, 20, 0, 0);
     function update() {
         const now = new Date();
         const diff = target - now;
