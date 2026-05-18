@@ -635,6 +635,15 @@ function toggleMusic() {
     isPlaying = !isPlaying;
 }
 
+window.addEventListener('load', () => {
+    audio.play().then(() => {
+        isPlaying = true;
+        musicBtn.classList.add('playing');
+        musicBtn.textContent = '♪';
+        fireworkBurst();
+    }).catch(() => {});
+});
+
 document.addEventListener('click', () => { if (!isPlaying && audio.paused) { toggleMusic(); } }, { once: true });
 
 document.querySelectorAll('.gallery-item').forEach(item => {
