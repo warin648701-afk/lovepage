@@ -399,7 +399,8 @@ body {
 <body>
 
 <button class="music-btn" id="musicBtn" onclick="toggleMusic()">♫</button>
-<audio id="bgMusic" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+<div id="ytPlayer" style="display:none"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
 
 <canvas id="heartsCanvas"></canvas>
 <canvas id="fireworksCanvas"></canvas>
@@ -672,31 +673,51 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// === MUSIC ===
+// === YOUTUBE MUSIC ===
+let player;
 let isPlaying = false;
-const audio = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('ytPlayer', {
+        videoId: 'mBECArSvaRs',
+        playerVars: {
+            autoplay: 0,
+            controls: 0,
+            loop: 1,
+            playlist: 'mBECArSvaRs',
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0
+        },
+        events: {
+            onReady: (e) => { e.target.setVolume(50); },
+            onStateChange: (e) => {
+                if (e.data === YT.PlayerState.ENDED) {
+                    player.playVideo();
+                }
+            }
+        }
+    });
+}
 
 function toggleMusic() {
     if (isPlaying) {
-        audio.pause();
+        player.pauseVideo();
         musicBtn.classList.remove('playing');
         musicBtn.textContent = '♫';
     } else {
-        audio.play().catch(() => {});
+        player.playVideo();
         musicBtn.classList.add('playing');
         musicBtn.textContent = '♪';
-        // Fireworks on play
         fireworkBurst();
     }
     isPlaying = !isPlaying;
 }
 
-// Start playing on first interaction
 document.addEventListener('click', () => {
-    if (!isPlaying && audio.paused) {
+    if (!isPlaying) {
         toggleMusic();
-        document.removeEventListener('click', arguments.callee);
     }
 }, { once: true });
 
