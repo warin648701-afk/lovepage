@@ -563,7 +563,7 @@ setTimeout(fireworkBurst, 2000);
 setInterval(() => { if (Math.random() > 0.5) fireworkBurst(); }, 4000);
 
 function setCountdown() {
-    const startDate = new Date(2024, 6, 31);
+    const startDate = new Date(2024, 7, 2);
     const now = new Date();
     let year = now.getFullYear();
     let month = now.getMonth();
@@ -581,7 +581,7 @@ function setCountdown() {
         document.getElementById('minutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
         document.getElementById('seconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
         const totalMs = now - startDate;
-        const totalDays = Math.floor(totalMs / 86400000);
+        const totalDays = Math.floor(totalMs / 86400000) + 2;
         document.getElementById('totalDays').textContent = totalDays + ' วัน';
     }
     update();
